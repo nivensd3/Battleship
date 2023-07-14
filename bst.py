@@ -2,7 +2,7 @@ from random import*
 
 #Board size is inputed and printed
 my_grid=[]
-board_size = eval(input("What size board do you want? enter one interger please?:  "))
+board_size = eval(input("What size board do you want? enter one interger please?: "))
 
 print("Sink Or Swim - Battleship")
 

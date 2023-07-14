@@ -1,81 +1,49 @@
-#Battle ship project
-from random import randint
+### trying to understand for loops for thew battle ship thing
+from random import*
 
-def main ():
+#Board size is inputed and printed
+my_grid=[]
+board_size = eval(input("What size board do you want? enter one interger please?:  "))
+
+print("Sink Or Swim - Battleship")
+
+for x in range(board_size):
+    my_grid.append(["0"]*board_size)
+
+def print_grid(my_grid):  
+    for row in my_grid:
+        print((" ").join(row))        
+print_grid(my_grid)
+  
+  
+  
+
+#If player wants random ship placement    
+def random_r(board_size):
+    return randint(0, len(board_size)-1)
+def random_c(board_size):
+    return randint(0, len(board_size[0])-1)
+
+ 
+def Guesses():
+        for guess in range (5):
+            guess_column = eval(input("what column do you want to hit: "))
+            guess_row = eval(input('what row do you want to hit: '))
+            if guess_column > board_size or guess_row > board_size:
+                print ("out of bounds")
+                break
+            elif guess_column and guess_row == btl_ship:
+                print('you hit it!')
+        if guess == 5 :
+            print('Game over') 
+        guess = guess + 1 
+        
     
-    x = y = 5
-    #create empty list to hold rows
-    grid = []
-    #for each row defined by Y, this loop will append a list containing X occurrences of "0"
-    for row in range(y):
-        grid.append(list("0"*x))
-
-    print (grid)
+        
+Guesses ()
+                
     
-    
-    
-    
-    
-    
-    
-    # We want to refer to columns by letter, but Python accesses lists by number. So we define
-# a dictionary to translate letters to the corresponding number. Note that Python lists start in
-# zero, not in one!
-letters_to_numbers = {
-    'A': 0,
-    'B': 1,
-    'C': 2,
-    'D': 3,
-    'E': 4,
-}
+        
+        
+     
 
-print ("Welcome to Battleship")
-# We want 5 battleships, so we use a for loop to ask for a ship 5 times!
-for n in range(5):
-    print("Where do you want ship ", n + 1, "?")
-    column = input("column (A to E):")
-    row = input("row (1 to 5):")
-    # columns are letters, so here we use the dictionary to get the number corresponding to the letter
-    column_number = letters_to_numbers[column]
-    # The player enters numbers from 1 to 5, but we have to substract 1 to use python lists that start on zero
-    row_number = int(row) - 1
-
-    board=[row_number][column_number] = 'X'
-
-    # Show the board, one row at a time
-    for row in board:
-        print(row)
-
-
-# Now clear the screen, and the other player starts guessing
-print("\n"*50)
-
-# Keep playing until we have 5 right guesses
-guesses = 0
-while guesses < 5:
-    print("Guess a battleship location")
-    column = input("column (A to E):")
-
-    if column not in "ABCDE":
-        print("That column is wrong! It should be A, B, C, D or E")
-
-    row = input("row (1 to 5):")
-
-    if row not in "12345":
-        print("That row is wrong! it should be 1, 2, 3, 4 or 5")
-
-    # columns are letters, so here we use the dictionary to get the number corresponding to the
-    # letter
-    column_number = letters_to_numbers[column]
-    # The player enters numbers from 1 to 5, but we have to substract 1 to use python lists that
-    # start on zero.
-    row_number = int(row) - 1
-
-    # Check if there was a hit or a miss
-    if board[row_number][column_number] == 'X':
-        print("HIT!")
-        guesses = guesses + 1
-    else:
-        print("MISS!")
-
-print("GAME OVER!")
