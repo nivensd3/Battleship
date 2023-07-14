@@ -29,7 +29,7 @@ ship_column = random_c(my_grid)
 
 
 def Guesses():
-        for guess in range (5):
+        for guess in range (4):
             guess_column = int(input("what column do you want to hit: "))
             guess_row = int(input('what row do you want to hit: '))
                 
