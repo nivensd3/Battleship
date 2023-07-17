@@ -62,6 +62,7 @@ def Guesses():
 Guesses ()
 
 print("the ship was located at: " +  ship_column,ship_row)
+
                 
     
         

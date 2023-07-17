@@ -5,14 +5,12 @@ from random import*
 my_grid=[]
 while True:
     try:
-        board_size = eval(input("What size board do you want? enter one interger please?:  "))
-        
-    except: 
-        NameError
-        print("That's not a number")
-    if type(board_size) == int:
+        board_size = eval(input("What size board do you want? enter one interger please?: "))
         break
-
+    except NameError:
+        print("That's not a number")
+        
+    
 print("Sink Or Swim - Battleship")
 
 for x in range(board_size):
@@ -32,35 +30,41 @@ def random_r(board_size):
 def random_c(board_size):
     return randint(0, len(board_size[0])-1)
 
- 
+ship_row = random_r(my_grid)
+ship_column = random_c(my_grid)
 
 
- 
- 
- 
 def Guesses():
         for guess in range (5):
-            guess_column = eval(input("what column do you want to hit: "))
-            guess_row = eval(input('what row do you want to hit: '))
-            if type(guess_column or guess_row) == str:
-                print ("Please enter a number")
-                guess = guess + 0 
-                break
+            
+            while True:
+                try:
+                    guess_column = int(input("what column do you want to hit: "))
+                    guess_row = int(input('what row do you want to hit: '))
+                    break
+                except ValueError:
+                    print("Not a coordinate on map")
                 
-            btl_ship = guess_column and guess_row
-            if guess_column > board_size or guess_row > board_size:
+                    
+            if (guess_row -1) == ship_row and (guess_column -1) == ship_column:
+                print('you hit it!')
+                break            
+            elif guess_column > board_size or guess_row > board_size:
                 print ("out of bounds")
-                
-            elif guess_column and guess_row == btl_ship:
-                
-               print('you hit it!')
-        if guess == 4 :
-            print('Game over') 
+            else:
+                print ("miss")
+            if guess == 5 :
+                print('Game over') 
         guess = guess + 1 
         
     
         
 Guesses ()
+
+print("the ship was located at: " +  ship_column,ship_row)
+
+                
+    
         
         
      
