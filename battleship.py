@@ -55,13 +55,14 @@ def Guesses():
                 print ("miss")
             if guess == 5 :
                 print('Game over') 
-        guess = guess + 1 
-        
-    
-        
+        guess = guess + 1        
+
+        print("The ship was located at:")
+        print(ship_column , ship_row)
+
 Guesses ()
 
-print("the ship was located at: " +  ship_column,ship_row)
+
                 
     
         
