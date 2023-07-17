@@ -7,7 +7,7 @@ while True:
     try:
         board_size = eval(input("What size board do you want? enter one interger please?: "))
         break
-    except NameError:
+    except:
         print("That's not a number")
         
     
