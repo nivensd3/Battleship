@@ -7,7 +7,7 @@ while True:
     try:
         board_size = eval(input("What size board do you want? enter one interger please?: "))
         break
-    except NameError:
+    except:
         print("That's not a number")
         
     
@@ -55,17 +55,16 @@ def Guesses():
                 print ("miss")
             if guess == 5 :
                 print('Game over') 
-        guess = guess + 1 
-        
-    
-        
+        guess = guess + 1        
+
+        print("The ship was located at:")
+        print(ship_column , ship_row)
+
 Guesses ()
 
-print("the ship was located at: " +  ship_column,ship_row)
 
                 
     
         
         
      
-
