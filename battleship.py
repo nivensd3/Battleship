@@ -44,8 +44,8 @@ def battleship():
                         
                         while True:
                             try:
+                                guess_row = int(input('what row do you want to hit: ')) 
                                 guess_column = int(input("what column do you want to hit: "))
-                                guess_row = int(input('what row do you want to hit: '))
                                 break
                             except ValueError:
                                 print("Not a coordinate on map")
@@ -65,7 +65,7 @@ def battleship():
                     print("The ship was located at:")
                     for i in range(ship_size):
                         my_grid[ship_row + i][ship_column] = "S"
-                        print(ship_column, ship_row + i)
+                        print(ship_row + i, ship_column)
 
             Guesses ()
             
@@ -84,10 +84,10 @@ def battleship():
                     print("Invalid input. Please enter integer values.")
 
             print("The ship has been placed on the grid by the user.")
-            print("Ship's location: ", ship_column, ship_row)
+            print("Ship's location: ",ship_row, ship_column)
             for i in range(ship_size):
                 my_grid[ship_row + i][ship_column] = "S"
-                print(ship_column, ship_row + i) 
+                print(ship_row + i, ship_column) 
             print_grid(my_grid)
             break
             
