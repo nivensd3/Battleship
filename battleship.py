@@ -88,7 +88,7 @@ def battleship():
             for i in range(ship_size):
                 my_grid[ship_row + i][ship_column] = "S"
                 print(ship_column, ship_row + i) 
-
+            print_grid(my_grid)
             break
             
         else:
