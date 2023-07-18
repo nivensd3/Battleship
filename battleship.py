@@ -87,7 +87,7 @@ def battleship():
             print("Ship's location: ", ship_column, ship_row)
             for i in range(ship_size):
                 my_grid[ship_row + i][ship_column] = "S"
-                print(ship_column, ship_row + i)
+                print(ship_column, ship_row + i) 
 
             break
             
