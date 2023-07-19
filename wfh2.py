@@ -3,7 +3,7 @@ from random import*
 
 #Board size is inputed and printed
 my_grid=[]
-while True: 
+while True:
     try:
         board_size = int(input("What size board do you want? enter one interger: "))
         ship_size = int(input("What size ship do you want? Enter a single integer: "))
