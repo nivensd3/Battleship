@@ -183,7 +183,7 @@ def battleship():
 
                 if guess == 4:
                     print("Game over")
-                guess = guess + 1
+                guess +=1
         
 
 
@@ -191,6 +191,7 @@ def battleship():
 
 
 battleship()
+
 
 
 
