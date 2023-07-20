@@ -3,6 +3,9 @@ from random import*
 
 #Board size is inputed and printed
 my_grid=[]
+#CPU Grid
+cpu_grid=[]
+
 while True:
     try:
         board_size = int(input("What size board do you want? enter one interger: "))
@@ -21,6 +24,7 @@ while True:
     
 print("Sink Or Swim - Battleship")
 
+
 for x in range(board_size):
     my_grid.append(["0"]*board_size)
 
@@ -29,10 +33,16 @@ def print_grid(my_grid):
         print((" ").join(row))        
 print_grid(my_grid)
   
+
+while True:
+    cpu_board_size = board_size
+    cpu_ship_size = ship_size
+    break
+
  
 def battleship():
      
-    user_input=input("Enter 1 if you would like the ship to be randomized. Enter 2 if you would like to place it yourself: ")
+    user_input=input("Enter 1 to just kill cpu (not vice versa). Enter 2 for cpu kill you: ")
 
     while True:
         if user_input == '1':
@@ -74,6 +84,7 @@ def battleship():
             break
         elif user_input == '2':
             # Allows user to place their ship
+
             while True:
                 try:
                     ship_row = int(input("Enter the row for ship placement (1 to {}): ".format(board_size - ship_size + 1))) - 1
@@ -96,11 +107,30 @@ def battleship():
             print("Invalid input. Please enter either 1 or 2.")
             battleship()
 
+
+        
+
+
+
+
+
+
         def playgame():
+
+            
+
             ship_row = randint(1, board_size - ship_size + 1)
             ship_column = randint(1, board_size - ship_size + 1)
 
             print("Prepare for War")
+            print("\t")
+
+            for x in range(cpu_board_size):
+                cpu_grid.append(["0"]*cpu_board_size)
+            def print_grid(cpu_grid):
+                for row in cpu_grid:
+                    print((" ").join(row)) 
+            print_grid(cpu_grid)
 
             for guess in range(5):
                 while True:
@@ -113,16 +143,54 @@ def battleship():
 
                 if guess_row == ship_row - 1 and guess_column == ship_column - 1:
                     print("You hit it!")
+                    cpu_grid[guess_column][guess_row] = "X"
+                    print_grid(cpu_grid)
                     break
                 elif guess_column >= board_size or guess_row >= board_size or guess_column < 0 or guess_row < 0:
                     print("Out of bounds")
+                elif  guess_row == ship_row - 1 and guess_column == ship_column - 1 =='M':
+                    print("You already blew up nothing try again.")
                 else:
-                    print("Miss")
+                    print("User Miss")
+                    cpu_grid[guess_column][guess_row] = "M"
+                    print_grid(cpu_grid)
                 if guess == 4:
                     print("Game over")
                 guess = guess + 1
+
+            print("The ship was located at:")
+            for i in range(cpu_ship_size):
+                cpu_grid[ship_row - 1 + i][ship_column - 1] = "S"
+                print("C:", ship_column,"R:", ship_row + i)
+
+            for c_guess in range (5):
+                    while True:
+
+                        try:
+                            computer_column = randint(1, len(my_grid))
+                            computer_row = randint(1, len(my_grid))
+                            break
+                        except ValueError:
+                            print("Cpu misssed")
+                    if (computer_column -1) == ship_column and (computer_row -1) == ship_row:
+                        print ("Cpu hit your ship!!")
+                        my_grid[guess_column][guess_row] = "X"
+                        break
+                    elif computer_column > len(my_grid) or computer_row > len(my_grid):
+                        print("cpu out of bounds")
+                    else:
+                        print("cpu miss")
+                        cpu_grid[guess_column][guess_row] = "M"
+                    if c_guess ==  4 :
+                        print ("Game over")
+                    c_guess = c_guess + 1
+
 
         playgame()
 
 
 battleship()
+
+
+
+
