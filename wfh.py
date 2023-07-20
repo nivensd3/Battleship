@@ -1,4 +1,4 @@
-### trying to understand for loops for thew battle ship thing
+### trying to understand for loops for the battle ship thing
 from random import*
 
 #Board size is inputed and printed
