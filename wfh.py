@@ -77,7 +77,7 @@ user_input=input("Enter 1 to just attack cpu (not vice versa). Enter 2 for cpu a
 while True:
     if user_input == '1':  
 
-    #If player wants random ship placement    
+    #If player wants random ship placement   
         ship_row = randint(1, board_size - ship_size + 1)
         ship_column = randint(1, board_size - ship_size + 1)
 

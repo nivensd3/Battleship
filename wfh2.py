@@ -116,11 +116,15 @@ def battleship():
 
 
         def playgame():
-
+            cpu_board_size = board_size
+            cpu_ship_size = ship_size
             
 
-            ship_row = randint(1, board_size - ship_size + 1)
-            ship_column = randint(1, board_size - ship_size + 1)
+            cpu_ship_row = randint(1,cpu_board_size - cpu_ship_size)
+            cpu_ship_column = randint(1,cpu_board_size - cpu_ship_size)
+
+            #ship_row = int(1, board_size - ship_size + 1)
+            #ship_column = int(1, board_size - ship_size + 1)
 
             print("Prepare for War")
             print("\t")
@@ -132,64 +136,64 @@ def battleship():
                     print((" ").join(row)) 
             print_grid(cpu_grid)
 
-            for guess in range(5):
+            for (guess) in range(5):
                 while True:
                     try:
                         guess_column = int(input("What column do you want to hit? ")) - 1
                         guess_row = int(input("What row do you want to hit? ")) - 1
+
+                        computer_column = randint(1, len(my_grid))
+                        computer_row = randint(1, len(my_grid))
                         break
                     except ValueError:
                         print("Not a coordinate on the map")
 
-                if guess_row == ship_row - 1 and guess_column == ship_column - 1:
+                if guess_row == cpu_ship_row - 1 and guess_column == cpu_ship_column - 1:
                     print("You hit it!")
                     cpu_grid[guess_column][guess_row] = "X"
                     print_grid(cpu_grid)
+                    
+                    if guess_row == ship_row - 1 and guess_column == ship_column - 1:
+                        print("CPU hit your ship!")
+                        my_grid[guess_row][guess_column] = "X"
+                        break
                     break
                 elif guess_column >= board_size or guess_row >= board_size or guess_column < 0 or guess_row < 0:
                     print("Out of bounds")
-                elif  guess_row == ship_row - 1 and guess_column == ship_column - 1 =='M':
+                    
+                    if computer_column > len(my_grid) or computer_row > len(my_grid):
+                        print("cpu out of bounds")
+                elif  guess_row == cpu_ship_row - 1 and guess_column == cpu_ship_column - 1 =='M':
                     print("You already blew up nothing try again.")
                 else:
                     print("User Miss")
                     cpu_grid[guess_column][guess_row] = "M"
                     print_grid(cpu_grid)
+
+                    cpu_guess_column = randint(1, board_size - 1)
+                    cpu_guess_row = randint(1, board_size - 1)
+
+                    if cpu_guess_row == ship_row - 1 and cpu_guess_column == ship_column - 1:
+                        print("CPU hit your ship!")
+                        my_grid[cpu_guess_row][cpu_guess_column] = "X"
+                    else:
+                        print("CPU Miss")
+                        my_grid[cpu_guess_row][cpu_guess_column] = "M"
+
+
                 if guess == 4:
                     print("Game over")
-                guess = guess + 1
+                guess +=1
+                exit()
 
-            print("The ship was located at:")
-            for i in range(cpu_ship_size):
-                cpu_grid[ship_row - 1 + i][ship_column - 1] = "S"
-                print("C:", ship_column,"R:", ship_row + i)
-
-            for c_guess in range (5):
-                    while True:
-
-                        try:
-                            computer_column = randint(1, len(my_grid))
-                            computer_row = randint(1, len(my_grid))
-                            break
-                        except ValueError:
-                            print("Cpu misssed")
-                    if (computer_column -1) == ship_column and (computer_row -1) == ship_row:
-                        print ("Cpu hit your ship!!")
-                        my_grid[guess_column][guess_row] = "X"
-                        break
-                    elif computer_column > len(my_grid) or computer_row > len(my_grid):
-                        print("cpu out of bounds")
-                    else:
-                        print("cpu miss")
-                        cpu_grid[guess_column][guess_row] = "M"
-                    if c_guess ==  4 :
-                        print ("Game over")
-                    c_guess = c_guess + 1
+        
 
 
         playgame()
 
 
 battleship()
+
 
 
 
