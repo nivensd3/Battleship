@@ -42,7 +42,8 @@ my_grid=[]
 
 while True:
     try:
-        board_size = int(input("What size board do you want? enter one interger: "))
+        ship_name = input("What would you like to name your ship:  ")
+        board_size = 10
         ship_size = int(input("What size ship do you want? Enter a single integer: "))
         if ship_size > board_size:
             print("Ship size cannot be larger than the board size. Please enter valid values.")
@@ -77,7 +78,8 @@ user_input=input("Enter 1 to just attack cpu (not vice versa). Enter 2 for cpu a
 while True:
     if user_input == '1':  
 
-    #If player wants random ship placement   
+    #If player wants random ship placement
+        ship_name = input("What would you like to name your ship:  ")  
         ship_row = randint(1, board_size - ship_size + 1)
         ship_column = randint(1, board_size - ship_size + 1)
 
@@ -89,6 +91,7 @@ while True:
 
         while True:
             try:
+                ship_name = input("What would you like to name your ship:  ")
                 ship_row = int(input("Enter the row for ship placement (1 to {}): ".format(board_size - ship_size + 1))) - 1
                 ship_column = int(input("Enter the column for ship placement (1 to {}): ".format(board_size - ship_size + 1))) - 1
                 if 0 <= ship_row <= board_size - ship_size and 0 <= ship_column <= board_size - ship_size:
@@ -150,10 +153,12 @@ while True:
                 print("Game over")
             guess += 1
 
-        print("The ship was located at:")
-        for i in range(ship_size):
-            cpu_grid[ship_row - 1 + i][ship_column - 1] = "S"
-            print("C:", ship_column, "R:", ship_row + i)
+
+    
+    print("The ship was located at:")
+    for i in range(ship_size):
+        cpu_grid[ship_row - 1 + i][ship_column - 1] = "S"
+        print("C:", ship_column, "R:", ship_row + i)
     break
 
 for c_guess in range(5):
@@ -163,6 +168,7 @@ for c_guess in range(5):
     if computer_row == ship_row - 1 and computer_column == ship_column - 1:
         print("CPU hit your ship!")
         my_grid[computer_row][computer_column] = "X"
+        
         break
     else:
         print("CPU Miss")
